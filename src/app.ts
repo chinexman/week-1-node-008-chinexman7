@@ -1,5 +1,5 @@
 import createError from 'http-errors';
-import express from 'express';
+import express, { Request,Response} from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -16,8 +16,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+
+import accRouter from './routes/accTransact'
+
+app.use('/', accRouter);
+
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function (req:Request, res:Response, next) {
   next(createError(404));
 });
 
