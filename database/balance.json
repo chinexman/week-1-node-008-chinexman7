@@ -1,0 +1,61 @@
+[
+ {
+  "accountNumber": 4395334850,
+  "balance": 500,
+  "created-At": "2021-08-17T15:31:59.702Z"
+ },
+ {
+  "accountNumber": 4395434450,
+  "balance": 12000,
+  "created-At": "2021-08-17T15:31:59.702Z"
+ },
+ {
+  "accountNumber": 4395334851,
+  "balance": 5000,
+  "created-At": "2021-08-17T16:19:15.606Z"
+ },
+ {
+  "accountNumber": 4395334820,
+  "balance": 5000,
+  "created-At": "2021-08-17T16:53:54.270Z"
+ },
+ {
+  "accountNumber": 1234568888,
+  "balance": 12000,
+  "created-At": "2021-08-17T20:38:47.431Z"
+ },
+ {
+  "accountNumber": 1234567898,
+  "created-At": "2021-08-17T20:38:47.754Z"
+ },
+ {
+  "accountNumber": 4395334987,
+  "balance": 12000,
+  "created-At": "2021-08-17T21:05:14.833Z"
+ },
+ {
+  "accountNumber": 4396334987,
+  "balance": 12000,
+  "created-At": "2021-08-17T21:07:07.570Z"
+ },
+ {
+  "accountNumber": 4395489085,
+  "balance": 10500,
+  "created-At": "2021-08-17T15:31:59.702Z"
+ },
+ {
+  "accountNumber": 4396334980,
+  "balance": 12000,
+  "created-At": "2021-08-17T21:11:12.227Z"
+ },
+ {
+  "accountNumber": 4395436789,
+  "balance": 8000,
+  "created-At": "2021-08-17T15:34:34.395Z"
+ },
+ {
+  "accountNumber": 4395434499,
+  "balance": 6000,
+  "created-At": "2021-08-17T15:31:59.702Z"
+ }
+]

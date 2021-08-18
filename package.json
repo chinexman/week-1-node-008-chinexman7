@@ -28,6 +28,7 @@
     "@typescript-eslint/parser": "~4.29.1",
     "eslint": "~7.32.0",
     "eslint-config-prettier": "~8.3.0",
+    "heroku": "~7.57.0",
     "jest": "~27.0.6",
     "prettier": "~2.3.2",
     "supertest": "~6.1.5",
