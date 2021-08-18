@@ -13,7 +13,7 @@ app.use(express.json());
     try{
 
         const accBalance = await allBalance();
-        res.status(200).send(accBalance);
+        res.status(200).json(accBalance);
 
     }catch(error){
         console.log(error);
@@ -34,7 +34,7 @@ async function getOneAccount(req: Request, res: Response){
       if(!accountNumber){
           return res.status(400).send(`${rawAccountNumber} account does not exist `)
       }
-    res.status(200).send(accountNumber);
+    res.status(200).json(accountNumber);
 
     }catch(error){
         console.log(error);
