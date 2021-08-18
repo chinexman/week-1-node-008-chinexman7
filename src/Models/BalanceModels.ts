@@ -28,7 +28,7 @@ const transactPath = path.join(__dirname,'../../database/transact.json');
   function allBalance(){
     return new Promise ((resolve, reject) => {
       try{
-        const accDatabase = JSON.stringify(accBalance, null, ' ')
+        const accDatabase = accBalance;
         resolve(accDatabase)
       } catch(error){
         reject('problem getting all balance')
@@ -43,7 +43,7 @@ const transactPath = path.join(__dirname,'../../database/transact.json');
     
         const oneAccountNumber = accBalance.find((c:{accountNumber:number})=>c.accountNumber === num);
 
-        const singleAccount = JSON.stringify(oneAccountNumber, null, ' ')
+        const singleAccount = oneAccountNumber;
         resolve(singleAccount)
       } catch(error) {
         reject('problem getting that Account')
@@ -66,7 +66,7 @@ function createAccount(transDetails:accountType){
 
 
     accBalance.push(transDetails);
-    fs.writeFileSync(balancePath,JSON.stringify(accBalance,null, " "));
+    fs.writeFileSync(balancePath,accBalance);
   
      resolve(transDetails);
   }
@@ -131,7 +131,7 @@ function transferTransaction(from: number, to: number, amount: number){
               accBalance.push(recieverAccountDetails);
               transact.push(transDetails);
     
-              fs.writeFileSync(transactPath,JSON.stringify(transact,null," "))
+              fs.writeFileSync(transactPath,transact))
               return resolve("insufficient balance");
           }
       transDetails.transferDescription="transaction successfully";
@@ -145,8 +145,8 @@ function transferTransaction(from: number, to: number, amount: number){
     //    result.push(senderAccountDetails);
     //    result.push(recieverAccountDetails);
        //console.log(transact);
-      fs.writeFileSync(balancePath,JSON.stringify(accBalance,null," "));
-      fs.writeFileSync(transactPath,JSON.stringify(transact,null," "));
+      fs.writeFileSync(balancePath,accBalance);
+      fs.writeFileSync(transactPath,transact);
       //console.log(senderAccountDetails);
       //console.log(recieverAccountDetails);
     //   res.write()
