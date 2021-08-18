@@ -66,7 +66,7 @@ function createAccount(transDetails:accountType){
 
 
     accBalance.push(transDetails);
-    fs.writeFileSync(balancePath,accBalance);
+    fs.writeFileSync(balancePath,JSON.stringify(accBalance,null, " "));
   
      resolve(transDetails);
   }
@@ -131,7 +131,7 @@ function transferTransaction(from: number, to: number, amount: number){
               accBalance.push(recieverAccountDetails);
               transact.push(transDetails);
     
-              fs.writeFileSync(transactPath,transact))
+              fs.writeFileSync(transactPath,JSON.stringify(transact,null," "))
               return resolve("insufficient balance");
           }
       transDetails.transferDescription="transaction successfully";
@@ -145,8 +145,8 @@ function transferTransaction(from: number, to: number, amount: number){
     //    result.push(senderAccountDetails);
     //    result.push(recieverAccountDetails);
        //console.log(transact);
-      fs.writeFileSync(balancePath,accBalance);
-      fs.writeFileSync(transactPath,transact);
+      fs.writeFileSync(balancePath,JSON.stringify(accBalance,null," "));
+      fs.writeFileSync(transactPath,JSON.stringify(transact,null," "));
       //console.log(senderAccountDetails);
       //console.log(recieverAccountDetails);
     //   res.write()
