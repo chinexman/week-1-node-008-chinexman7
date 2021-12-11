@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13.3-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: 'sq008'
+      POSTGRES_PASSWORD: 'sq008'
+      POSTGRES_DB: 'sq008'
+    healthcheck:
+      interval: 10s
+      retries: 3
+      timeout: 2s
+      test:
+        ['/user/bin/pg_isready', '-U', 'postgres', '--silent', 'd', 'postgres']

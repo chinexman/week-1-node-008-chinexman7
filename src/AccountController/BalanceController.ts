@@ -4,15 +4,16 @@ const router = express.Router();
 import path from 'path';
 import fs, { read } from 'fs';
 import {v4 as uuidv4} from 'uuid'
-import {allBalance, oneAccountBalance, createAccount, transferTransaction, accountType,transactType} from '../Models/BalanceModels'
+//import {allBalance, oneAccountBalance, createAccount, transferTransaction, accountType,transactType} from '../Models/BalanceModels'
 //import {getAccountNumber} from '../utils'
+import accountBalance from '../Models/mondodbBalanceModel'
 
 
 app.use(express.json());
  async function getAllBalance(req: Request, res: Response){
     try{
 
-        const accBalance = await allBalance();
+        const accBalance = await accountBalance.find({});
         res.status(200).json({
             data: accBalance});
 
@@ -29,34 +30,26 @@ async function getOneAccount(req: Request, res: Response){
          console.log(typeof rawAccountNumber)
          console.log(rawAccountNumber);
     //const accountNumber = accBalance.find((c:{accNo:number})=>c.accNo === parseInt(req.params.accountNumber));
-    const accountNumber = await oneAccountBalance(rawAccountNumber);
+    // const accountNumber = await oneAccountBalance(rawAccountNumber);
 
-    console.log(accountNumber);
-      if(!accountNumber){
-          return res.status(400).send(`${rawAccountNumber} account does not exist `)
-      }
-    res.status(200).json({data:accountNumber});
+    // console.log(accountNumber);
+    //   if(!accountNumber){
+    //       return res.status(400).send(`${rawAccountNumber} account does not exist `)
+    //   }
+    // res.status(200).json({data:accountNumber});
 
     }catch(error){
         console.log(error);
     }
 } 
 
-
 async function performCreateAccount(req: Request, res: Response){
-    try{
-
+    // try{
+         console.log(req.body);
         const {accountNumber,balance} = req.body;
         const acclength = accountNumber.toString();
-       //const create:accountType = {
            console.log(acclength);
-        const create:accountType = {
-
-           accountNumber:accountNumber,
-           balance:balance,
-           'created-At': new Date().toISOString()
-   
-       };
+    
        
       if(req.body ===null){
           return res.status(400).send('account no is required');
@@ -65,24 +58,32 @@ async function performCreateAccount(req: Request, res: Response){
        if(acclength.length !==10){
            return res.status(404).send('account must be 10 digit long')
        }
-       
-       const exist = await createAccount(create);
+      
+    
 
-       res.status(201).send(`${create.accountNumber} account was created successfully`);
+       const create  = new accountBalance({
+       accountNumber,
+       balance,
+       'createdAt':new Date().toISOString()
+      });
 
-//    if(exist){
-//        return res.status(404).send(`${create.accNo} already exist`);
-   
-   
-      // accBalance.push(create);
-  // fs.writeFileSync(balancePath,JSON.stringify(accBalance,null, " "));
-   
+      console.log(create);
+      try {
+          console.log("here")
+        await create.save();
+        res.send("New account  Added Successfully");
+      } catch (error) {
+          console.log("not here")
+        return res.status(400).json({ error });
+      }
 
-    }catch(error){
-        res.status(404).send(error);
 
-    }
+
+
+
+
 } 
+
 
 
 
@@ -92,14 +93,14 @@ async function doTransferTransaction(req: Request, res: Response){
      console.log(req.body)
      console.log(typeof from);
      console.log(from);
-        let transDetials:transactType ={
+        // let transDetials:transactType ={
               
-            from : from,
-              amount : amount,
-             to:to
-            //  transferDescription:"failed transaction",
-            //  createAt: new Date().toISOString()
-            }
+        //     from : from,
+        //       amount : amount,
+        //      to:to
+        //     //  transferDescription:"failed transaction",
+        //     //  createAt: new Date().toISOString()
+        //     }
 
     
         if(from.toString().length !==10){
@@ -114,8 +115,8 @@ async function doTransferTransaction(req: Request, res: Response){
         }
       
 
-          const result = await transferTransaction(parseInt(from),parseInt(to),parseInt(amount));
-          res.status(201).send(result);
+        //   const result = await transferTransaction(parseInt(from),parseInt(to),parseInt(amount));
+        //   res.status(201).send(result);
 
 
     
